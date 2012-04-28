@@ -1,0 +1,400 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A76AC25B154BDACB00B93FEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76AC25A154BDACB00B93FEF /* Foundation.framework */; };
+		A76AC261154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A76AC260154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m */; };
+		A76AC269154BDACC00B93FEF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76AC268154BDACC00B93FEF /* SenTestingKit.framework */; };
+		A76AC26C154BDACC00B93FEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76AC25A154BDACB00B93FEF /* Foundation.framework */; };
+		A76AC26F154BDACC00B93FEF /* libCTObjectiveCRuntimeAdditions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76AC257154BDACB00B93FEF /* libCTObjectiveCRuntimeAdditions.a */; };
+		A76AC275154BDACC00B93FEF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A76AC273154BDACC00B93FEF /* InfoPlist.strings */; };
+		A76AC278154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A76AC277154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A76AC26D154BDACC00B93FEF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A76AC24E154BDACB00B93FEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A76AC256154BDACB00B93FEF;
+			remoteInfo = CTObjectiveCRuntimeAdditions;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A76AC257154BDACB00B93FEF /* libCTObjectiveCRuntimeAdditions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCTObjectiveCRuntimeAdditions.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A76AC25A154BDACB00B93FEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A76AC25E154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CTObjectiveCRuntimeAdditions-Prefix.pch"; sourceTree = "<group>"; };
+		A76AC25F154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTObjectiveCRuntimeAdditions.h; sourceTree = "<group>"; };
+		A76AC260154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTObjectiveCRuntimeAdditions.m; sourceTree = "<group>"; };
+		A76AC267154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CTObjectiveCRuntimeAdditionsTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A76AC268154BDACC00B93FEF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		A76AC272154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CTObjectiveCRuntimeAdditionsTests-Info.plist"; sourceTree = "<group>"; };
+		A76AC274154BDACC00B93FEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A76AC276154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTObjectiveCRuntimeAdditionsTests.h; sourceTree = "<group>"; };
+		A76AC277154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTObjectiveCRuntimeAdditionsTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A76AC254154BDACB00B93FEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A76AC25B154BDACB00B93FEF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A76AC263154BDACC00B93FEF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A76AC269154BDACC00B93FEF /* SenTestingKit.framework in Frameworks */,
+				A76AC26C154BDACC00B93FEF /* Foundation.framework in Frameworks */,
+				A76AC26F154BDACC00B93FEF /* libCTObjectiveCRuntimeAdditions.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A76AC24C154BDACB00B93FEF = {
+			isa = PBXGroup;
+			children = (
+				A76AC25C154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions */,
+				A76AC270154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests */,
+				A76AC259154BDACB00B93FEF /* Frameworks */,
+				A76AC258154BDACB00B93FEF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A76AC258154BDACB00B93FEF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A76AC257154BDACB00B93FEF /* libCTObjectiveCRuntimeAdditions.a */,
+				A76AC267154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A76AC259154BDACB00B93FEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A76AC25A154BDACB00B93FEF /* Foundation.framework */,
+				A76AC268154BDACC00B93FEF /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A76AC25C154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions */ = {
+			isa = PBXGroup;
+			children = (
+				A76AC25F154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.h */,
+				A76AC260154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m */,
+				A76AC25D154BDACB00B93FEF /* Supporting Files */,
+			);
+			path = CTObjectiveCRuntimeAdditions;
+			sourceTree = "<group>";
+		};
+		A76AC25D154BDACB00B93FEF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A76AC25E154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A76AC270154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests */ = {
+			isa = PBXGroup;
+			children = (
+				A76AC276154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.h */,
+				A76AC277154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m */,
+				A76AC271154BDACC00B93FEF /* Supporting Files */,
+			);
+			path = CTObjectiveCRuntimeAdditionsTests;
+			sourceTree = "<group>";
+		};
+		A76AC271154BDACC00B93FEF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A76AC272154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests-Info.plist */,
+				A76AC273154BDACC00B93FEF /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		A76AC255154BDACB00B93FEF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		A76AC256154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A76AC27B154BDACC00B93FEF /* Build configuration list for PBXNativeTarget "CTObjectiveCRuntimeAdditions" */;
+			buildPhases = (
+				A76AC253154BDACB00B93FEF /* Sources */,
+				A76AC254154BDACB00B93FEF /* Frameworks */,
+				A76AC255154BDACB00B93FEF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CTObjectiveCRuntimeAdditions;
+			productName = CTObjectiveCRuntimeAdditions;
+			productReference = A76AC257154BDACB00B93FEF /* libCTObjectiveCRuntimeAdditions.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		A76AC266154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A76AC27E154BDACC00B93FEF /* Build configuration list for PBXNativeTarget "CTObjectiveCRuntimeAdditionsTests" */;
+			buildPhases = (
+				A76AC262154BDACC00B93FEF /* Sources */,
+				A76AC263154BDACC00B93FEF /* Frameworks */,
+				A76AC264154BDACC00B93FEF /* Resources */,
+				A76AC265154BDACC00B93FEF /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A76AC26E154BDACC00B93FEF /* PBXTargetDependency */,
+			);
+			name = CTObjectiveCRuntimeAdditionsTests;
+			productName = CTObjectiveCRuntimeAdditionsTests;
+			productReference = A76AC267154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A76AC24E154BDACB00B93FEF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = CT;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = ebf;
+			};
+			buildConfigurationList = A76AC251154BDACB00B93FEF /* Build configuration list for PBXProject "CTObjectiveCRuntimeAdditions" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A76AC24C154BDACB00B93FEF;
+			productRefGroup = A76AC258154BDACB00B93FEF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A76AC256154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions */,
+				A76AC266154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A76AC264154BDACC00B93FEF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A76AC275154BDACC00B93FEF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A76AC265154BDACC00B93FEF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A76AC253154BDACB00B93FEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A76AC261154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A76AC262154BDACC00B93FEF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A76AC278154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A76AC26E154BDACC00B93FEF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A76AC256154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions */;
+			targetProxy = A76AC26D154BDACC00B93FEF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A76AC273154BDACC00B93FEF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A76AC274154BDACC00B93FEF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A76AC279154BDACC00B93FEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A76AC27A154BDACC00B93FEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A76AC27C154BDACC00B93FEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/CTObjectiveCRuntimeAdditions.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CTObjectiveCRuntimeAdditions/CTObjectiveCRuntimeAdditions-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A76AC27D154BDACC00B93FEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DSTROOT = /tmp/CTObjectiveCRuntimeAdditions.dst;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CTObjectiveCRuntimeAdditions/CTObjectiveCRuntimeAdditions-Prefix.pch";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A76AC27F154BDACC00B93FEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CTObjectiveCRuntimeAdditions/CTObjectiveCRuntimeAdditions-Prefix.pch";
+				INFOPLIST_FILE = "CTObjectiveCRuntimeAdditionsTests/CTObjectiveCRuntimeAdditionsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		A76AC280154BDACC00B93FEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CTObjectiveCRuntimeAdditions/CTObjectiveCRuntimeAdditions-Prefix.pch";
+				INFOPLIST_FILE = "CTObjectiveCRuntimeAdditionsTests/CTObjectiveCRuntimeAdditionsTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A76AC251154BDACB00B93FEF /* Build configuration list for PBXProject "CTObjectiveCRuntimeAdditions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A76AC279154BDACC00B93FEF /* Debug */,
+				A76AC27A154BDACC00B93FEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A76AC27B154BDACC00B93FEF /* Build configuration list for PBXNativeTarget "CTObjectiveCRuntimeAdditions" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A76AC27C154BDACC00B93FEF /* Debug */,
+				A76AC27D154BDACC00B93FEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A76AC27E154BDACC00B93FEF /* Build configuration list for PBXNativeTarget "CTObjectiveCRuntimeAdditionsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A76AC27F154BDACC00B93FEF /* Debug */,
+				A76AC280154BDACC00B93FEF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A76AC24E154BDACB00B93FEF /* Project object */;
+}
