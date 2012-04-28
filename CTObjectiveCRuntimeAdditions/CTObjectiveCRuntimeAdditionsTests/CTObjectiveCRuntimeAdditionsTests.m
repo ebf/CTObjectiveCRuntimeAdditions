@@ -49,6 +49,8 @@
     NSString *originalStringThree = [CTTestSwizzleClass stringThree];
     NSString *originalJoinedString = [testObject stringByJoiningString:@"my" withWith:@"string"];
     
+    NSString *originalStringFive = testObject.__prefixedHookedStringFive;
+    
     class_swizzlesMethodsWithPrefix(CTTestSwizzleClass.class, @"__prefixedHooked");
     
     NSString *hookedString = testObject.stringTwo;
@@ -66,6 +68,8 @@
     STAssertFalse([originalJoinedString isEqualToString:hookedJoinedString], @"originalJoinedString cannot be equal to hookedJoinedString.");
     STAssertEqualObjects(originalJoinedString, @"mystring", @"originalJoinedString wrong.");
     STAssertTrue([hookedJoinedString hasSuffix:@"mystringbar"], @"hookedJoinedString should have suffix 'bar'.");
+    
+    STAssertEqualObjects(originalStringFive, @"foo", @"something went wrong with swizzling a method that doesn't have an original method without the prefix.");
 }
 
 - (void)testDynamicSubclassFinding

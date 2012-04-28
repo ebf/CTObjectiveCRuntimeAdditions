@@ -28,6 +28,8 @@
 - (NSString *)stringByJoiningString:(NSString *)string withWith:(NSString *)suffix;
 - (NSString *)__prefixedHookedStringByJoiningString:(NSString *)string withWith:(NSString *)suffix;
 
+- (NSString *)__prefixedHookedStringFive;
+
 + (BOOL)passesTest;
 
 @end

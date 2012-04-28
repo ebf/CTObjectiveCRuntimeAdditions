@@ -76,6 +76,11 @@
     return [original stringByAppendingString:@"bar"];
 }
 
+- (NSString *)__prefixedHookedStringFive
+{
+    return @"foo";
+}
+
 + (BOOL)passesTest
 {
     return NO;
