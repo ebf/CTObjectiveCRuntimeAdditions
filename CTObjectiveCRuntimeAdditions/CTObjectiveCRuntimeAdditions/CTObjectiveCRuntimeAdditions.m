@@ -54,15 +54,20 @@ void class_enumerateMethodList(Class class, CTMethodEnumertor enumerator)
 {
     if (!enumerator) return;
     
+    static dispatch_queue_t queue = NULL;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        queue = dispatch_queue_create("de.ebf.objc_runtime_additions.method_enumeration_queue", DISPATCH_QUEUE_CONCURRENT);
+    });
     
     unsigned int methodCount = 0;
     Method *methods = class_copyMethodList(class, &methodCount);
     
-    for (NSUInteger index = 0; index < methodCount; ++index) {
+    dispatch_apply(methodCount, queue, ^(size_t index) {
         Method method = methods[index];
-        
         enumerator(class, method);
-    }
+    });
     
     free(methods);
 }
