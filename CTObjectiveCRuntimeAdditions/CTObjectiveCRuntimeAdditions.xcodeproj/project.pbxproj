@@ -14,6 +14,8 @@
 		A76AC26F154BDACC00B93FEF /* libCTObjectiveCRuntimeAdditions.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A76AC257154BDACB00B93FEF /* libCTObjectiveCRuntimeAdditions.a */; };
 		A76AC275154BDACC00B93FEF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A76AC273154BDACC00B93FEF /* InfoPlist.strings */; };
 		A76AC278154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A76AC277154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m */; };
+		A76AC283154BE37C00B93FEF /* CTTestSwizzleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = A76AC282154BE37C00B93FEF /* CTTestSwizzleClass.m */; };
+		A76AC2BD154BECFF00B93FEF /* CTTestSwizzleSubclass.m in Sources */ = {isa = PBXBuildFile; fileRef = A76AC2BC154BECFF00B93FEF /* CTTestSwizzleSubclass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,10 @@
 		A76AC274154BDACC00B93FEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A76AC276154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTObjectiveCRuntimeAdditionsTests.h; sourceTree = "<group>"; };
 		A76AC277154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTObjectiveCRuntimeAdditionsTests.m; sourceTree = "<group>"; };
+		A76AC281154BE37C00B93FEF /* CTTestSwizzleClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTTestSwizzleClass.h; sourceTree = "<group>"; };
+		A76AC282154BE37C00B93FEF /* CTTestSwizzleClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTTestSwizzleClass.m; sourceTree = "<group>"; };
+		A76AC2BB154BECFF00B93FEF /* CTTestSwizzleSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTTestSwizzleSubclass.h; sourceTree = "<group>"; };
+		A76AC2BC154BECFF00B93FEF /* CTTestSwizzleSubclass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTTestSwizzleSubclass.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +120,10 @@
 				A76AC276154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.h */,
 				A76AC277154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m */,
 				A76AC271154BDACC00B93FEF /* Supporting Files */,
+				A76AC281154BE37C00B93FEF /* CTTestSwizzleClass.h */,
+				A76AC282154BE37C00B93FEF /* CTTestSwizzleClass.m */,
+				A76AC2BB154BECFF00B93FEF /* CTTestSwizzleSubclass.h */,
+				A76AC2BC154BECFF00B93FEF /* CTTestSwizzleSubclass.m */,
 			);
 			path = CTObjectiveCRuntimeAdditionsTests;
 			sourceTree = "<group>";
@@ -245,6 +255,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76AC278154BDACC00B93FEF /* CTObjectiveCRuntimeAdditionsTests.m in Sources */,
+				A76AC283154BE37C00B93FEF /* CTTestSwizzleClass.m in Sources */,
+				A76AC2BD154BECFF00B93FEF /* CTTestSwizzleSubclass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
