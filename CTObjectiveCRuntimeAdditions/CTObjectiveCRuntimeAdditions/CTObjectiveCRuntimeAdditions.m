@@ -7,6 +7,17 @@
 //
 
 #import "CTObjectiveCRuntimeAdditions.h"
+#import "CTBlockDescription.h"
+#import "CTSwizzleBlockImplementation.h"
+
+static NSMutableArray *CTBlockImplementations;
+
+__attribute((constructor))void CTObjectiveCRuntimeAdditionsInitialization(void)
+{
+    @autoreleasepool {
+        CTBlockImplementations = [NSMutableArray array];
+    }
+}
 
 void class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector)
 {
@@ -109,4 +120,26 @@ Class class_subclassPassingTest(Class class, CTClassTest test)
     free(classList);
     
     return testPassingClass;
+}
+
+void class_swizzleSelectorWithBlock(Class class, SEL originalSelector, SEL unusedSelector, id block)
+{
+    NSCAssert(block != nil, @"block cannot be nil");
+    
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    NSMethodSignature *methodSignature = [NSMethodSignature signatureWithObjCTypes:method_getTypeEncoding(originalMethod)];
+    
+    CTBlockDescription *blockDescription = [[CTBlockDescription alloc] initWithBlock:block];
+    NSCAssert([blockDescription isCompatibleForBlockSwizzlingWithMethodSignature:methodSignature], @"block is not compatible for swizzling selector %@ of class %@", NSStringFromSelector(originalSelector), NSStringFromClass(class));
+    
+    CTSwizzleBlockImplementation *blockImplementation = [[CTSwizzleBlockImplementation alloc] initWithBlock:block
+                                                                                            methodSignature:methodSignature
+                                                                                           swizzledSelector:unusedSelector
+                                                                                              originalClass:class];
+    [CTBlockImplementations addObject:blockImplementation];
+    
+    BOOL success = class_addMethod(class, unusedSelector, blockImplementation.implementation, method_getTypeEncoding(originalMethod));
+    NSCAssert(success, @"An implementation for selector %@ of class %@ already exists", NSStringFromSelector(unusedSelector), NSStringFromClass(class));
+    
+    class_swizzleSelector(class, originalSelector, unusedSelector);
 }

@@ -32,6 +32,16 @@
 
 #pragma mark - Instance methods
 
+- (CGPoint)pointByAddingPoint:(CGPoint)point
+{
+    return CGPointMake(point.x + 1.0f, point.y + 1.0f);
+}
+
+- (NSString *)helloWorldStringFromString:(NSString *)string
+{
+    return [@"Hello World" stringByAppendingFormat:@" %@", string];
+}
+
 - (NSString *)orginalString
 {
     return @"foo";

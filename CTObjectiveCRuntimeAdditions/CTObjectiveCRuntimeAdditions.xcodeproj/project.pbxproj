@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A7620EDE15F359680016F414 /* CTBlockDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = A7620EDC15F359680016F414 /* CTBlockDescription.h */; };
+		A7620EDF15F359680016F414 /* CTBlockDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = A7620EDD15F359680016F414 /* CTBlockDescription.m */; };
+		A7620EE315F360700016F414 /* CTSwizzleBlockImplementation.h in Headers */ = {isa = PBXBuildFile; fileRef = A7620EE115F360700016F414 /* CTSwizzleBlockImplementation.h */; };
+		A7620EE415F360700016F414 /* CTSwizzleBlockImplementation.m in Sources */ = {isa = PBXBuildFile; fileRef = A7620EE215F360700016F414 /* CTSwizzleBlockImplementation.m */; };
+		A7620F2915F36CEF0016F414 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7620F2415F36CDF0016F414 /* libffi.a */; };
+		A7620F2B15F394430016F414 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7620F2A15F394430016F414 /* CoreGraphics.framework */; };
 		A76AC25B154BDACB00B93FEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76AC25A154BDACB00B93FEF /* Foundation.framework */; };
 		A76AC261154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A76AC260154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m */; };
 		A76AC269154BDACC00B93FEF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A76AC268154BDACC00B93FEF /* SenTestingKit.framework */; };
@@ -19,6 +25,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A7620F2315F36CDF0016F414 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7620F1B15F36CDF0016F414 /* libffi.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F6F980BA147386130008F121;
+			remoteInfo = "libffi iOS";
+		};
+		A7620F2515F36CDF0016F414 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7620F1B15F36CDF0016F414 /* libffi.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6C43CB3D1534E9D100162364;
+			remoteInfo = "libffi OS X";
+		};
+		A7620F2715F36CE70016F414 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7620F1B15F36CDF0016F414 /* libffi.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F6F980B9147386130008F121;
+			remoteInfo = "libffi iOS";
+		};
 		A76AC26D154BDACC00B93FEF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A76AC24E154BDACB00B93FEF /* Project object */;
@@ -29,6 +56,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A7620EDC15F359680016F414 /* CTBlockDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTBlockDescription.h; sourceTree = "<group>"; };
+		A7620EDD15F359680016F414 /* CTBlockDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTBlockDescription.m; sourceTree = "<group>"; };
+		A7620EE115F360700016F414 /* CTSwizzleBlockImplementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTSwizzleBlockImplementation.h; sourceTree = "<group>"; };
+		A7620EE215F360700016F414 /* CTSwizzleBlockImplementation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTSwizzleBlockImplementation.m; sourceTree = "<group>"; };
+		A7620F1B15F36CDF0016F414 /* libffi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libffi.xcodeproj; path = ../../libffi/libffi.xcodeproj; sourceTree = "<group>"; };
+		A7620F2A15F394430016F414 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		A76AC257154BDACB00B93FEF /* libCTObjectiveCRuntimeAdditions.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCTObjectiveCRuntimeAdditions.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A76AC25A154BDACB00B93FEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A76AC25E154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CTObjectiveCRuntimeAdditions-Prefix.pch"; sourceTree = "<group>"; };
@@ -51,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7620F2915F36CEF0016F414 /* libffi.a in Frameworks */,
 				A76AC25B154BDACB00B93FEF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -59,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7620F2B15F394430016F414 /* CoreGraphics.framework in Frameworks */,
 				A76AC269154BDACC00B93FEF /* SenTestingKit.framework in Frameworks */,
 				A76AC26C154BDACC00B93FEF /* Foundation.framework in Frameworks */,
 				A76AC26F154BDACC00B93FEF /* libCTObjectiveCRuntimeAdditions.a in Frameworks */,
@@ -68,6 +103,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A7620EEF15F363AA0016F414 /* libffi */ = {
+			isa = PBXGroup;
+			children = (
+				A7620F1B15F36CDF0016F414 /* libffi.xcodeproj */,
+			);
+			name = libffi;
+			sourceTree = "<group>";
+		};
+		A7620F1C15F36CDF0016F414 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A7620F2415F36CDF0016F414 /* libffi.a */,
+				A7620F2615F36CDF0016F414 /* libffi.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A76AC24C154BDACB00B93FEF = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +142,7 @@
 		A76AC259154BDACB00B93FEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A7620F2A15F394430016F414 /* CoreGraphics.framework */,
 				A76AC25A154BDACB00B93FEF /* Foundation.framework */,
 				A76AC268154BDACC00B93FEF /* SenTestingKit.framework */,
 			);
@@ -99,6 +152,11 @@
 		A76AC25C154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions */ = {
 			isa = PBXGroup;
 			children = (
+				A7620EEF15F363AA0016F414 /* libffi */,
+				A7620EE115F360700016F414 /* CTSwizzleBlockImplementation.h */,
+				A7620EE215F360700016F414 /* CTSwizzleBlockImplementation.m */,
+				A7620EDC15F359680016F414 /* CTBlockDescription.h */,
+				A7620EDD15F359680016F414 /* CTBlockDescription.m */,
 				A76AC25F154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.h */,
 				A76AC260154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m */,
 				A76AC25D154BDACB00B93FEF /* Supporting Files */,
@@ -144,6 +202,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A7620EDE15F359680016F414 /* CTBlockDescription.h in Headers */,
+				A7620EE315F360700016F414 /* CTSwizzleBlockImplementation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +221,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A7620F2815F36CE70016F414 /* PBXTargetDependency */,
 			);
 			name = CTObjectiveCRuntimeAdditions;
 			productName = CTObjectiveCRuntimeAdditions;
@@ -206,6 +267,12 @@
 			mainGroup = A76AC24C154BDACB00B93FEF;
 			productRefGroup = A76AC258154BDACB00B93FEF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A7620F1C15F36CDF0016F414 /* Products */;
+					ProjectRef = A7620F1B15F36CDF0016F414 /* libffi.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				A76AC256154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions */,
@@ -213,6 +280,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A7620F2415F36CDF0016F414 /* libffi.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libffi.a;
+			remoteRef = A7620F2315F36CDF0016F414 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A7620F2615F36CDF0016F414 /* libffi.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libffi.a;
+			remoteRef = A7620F2515F36CDF0016F414 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A76AC264154BDACC00B93FEF /* Resources */ = {
@@ -247,6 +331,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A76AC261154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions.m in Sources */,
+				A7620EDF15F359680016F414 /* CTBlockDescription.m in Sources */,
+				A7620EE415F360700016F414 /* CTSwizzleBlockImplementation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +349,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A7620F2815F36CE70016F414 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "libffi iOS";
+			targetProxy = A7620F2715F36CE70016F414 /* PBXContainerItemProxy */;
+		};
 		A76AC26E154BDACC00B93FEF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A76AC256154BDACB00B93FEF /* CTObjectiveCRuntimeAdditions */;
@@ -305,6 +396,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libffi/ios/include\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 			};
@@ -326,6 +421,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libffi/ios/include\"",
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

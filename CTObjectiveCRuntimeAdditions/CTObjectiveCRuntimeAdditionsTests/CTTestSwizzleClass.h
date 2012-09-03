@@ -6,7 +6,7 @@
 //  Copyright 2012 ebf. All rights reserved.
 //
 
-
+#import <CoreGraphics/CoreGraphics.h>
 
 /**
  @abstract  <#abstract comment#>
@@ -31,5 +31,9 @@
 - (NSString *)__prefixedHookedStringFive;
 
 + (BOOL)passesTest;
+
+- (NSString *)helloWorldStringFromString:(NSString *)string;
+
+- (CGPoint)pointByAddingPoint:(CGPoint)point;
 
 @end
