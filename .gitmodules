@@ -1,0 +1,3 @@
+[submodule "libffi"]
+	path = libffi
+	url = git@github.com:ebf/libffi-iOS.git
