@@ -143,3 +143,36 @@ void class_swizzleSelectorWithBlock(Class class, SEL originalSelector, SEL unuse
     
     class_swizzleSelector(class, originalSelector, unusedSelector);
 }
+
+void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, BOOL automaticSynchronizeUserDefaults)
+{
+    NSString *userDefaultsKey = [NSString stringWithFormat:@"%@__%@", NSStringFromClass(class), propertyName];
+    
+    SEL getter = NSSelectorFromString(propertyName);
+    NSString *firstLetter = [propertyName substringToIndex:1];
+    NSString *setterName = [propertyName stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[NSString stringWithFormat:@"set%@", firstLetter.uppercaseString]];
+    setterName = [setterName stringByAppendingString:@":"];
+    SEL setter = NSSelectorFromString(setterName);
+    
+    IMP getterImplementation = imp_implementationWithBlock(^id(id self) {
+        // 1) try to read from cache
+        return [[NSUserDefaults standardUserDefaults] objectForKey:userDefaultsKey];
+    });
+    
+    IMP setterImplementation = imp_implementationWithBlock(^(id self, id object) {
+        if (!object) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:userDefaultsKey];
+        } else {
+            [[NSUserDefaults standardUserDefaults] setObject:object forKey:userDefaultsKey];
+            
+            if (automaticSynchronizeUserDefaults) {
+                [[NSUserDefaults standardUserDefaults] synchronize];
+            }
+        }
+    });
+    
+    BOOL success = class_addMethod(class, getter, getterImplementation, "@@:");
+    NSCAssert(success, @"cannot add method");
+    success = class_addMethod(class, setter, setterImplementation, "v@:@");
+    NSCAssert(success, @"cannot add method");
+}

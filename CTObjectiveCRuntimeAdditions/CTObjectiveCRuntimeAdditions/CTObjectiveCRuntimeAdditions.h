@@ -34,3 +34,8 @@ Class class_subclassPassingTest(Class class, CTClassTest test);
  @warning if originalSelector's argument list is (id self, SEL _cmd, ...), then block's argument list must be (id self, IMP originalImplemenation, ...)
  */
 void class_swizzleSelectorWithBlock(Class class, SEL originalSelector, SEL unusedSelector, id block);
+
+/**
+ Implements class property at runtime which is backed by NSUserDefaults. This will use -[NSUserDefaults setObject:forKey:].
+ */
+void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, BOOL automaticSynchronizeUserDefaults);
