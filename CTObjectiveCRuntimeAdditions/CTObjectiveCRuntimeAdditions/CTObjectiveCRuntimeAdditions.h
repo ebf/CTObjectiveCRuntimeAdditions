@@ -39,3 +39,9 @@ void class_swizzleSelectorWithBlock(Class class, SEL originalSelector, SEL unuse
  Implements class property at runtime which is backed by NSUserDefaults. This will use -[NSUserDefaults setObject:forKey:].
  */
 void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, BOOL automaticSynchronizeUserDefaults);
+
+/**
+ Implements class poperty at runtime which is backed by associated objects
+ */
+void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy);
+

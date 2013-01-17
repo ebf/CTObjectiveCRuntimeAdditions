@@ -176,3 +176,26 @@ void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, 
     success = class_addMethod(class, setter, setterImplementation, "v@:@");
     NSCAssert(success, @"cannot add method");
 }
+
+void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy)
+{
+    SEL getter = NSSelectorFromString(propertyName);
+    NSString *firstLetter = [propertyName substringToIndex:1];
+    NSString *setterName = [propertyName stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[NSString stringWithFormat:@"set%@", firstLetter.uppercaseString]];
+    setterName = [setterName stringByAppendingString:@":"];
+    SEL setter = NSSelectorFromString(setterName);
+    
+    IMP getterImplementation = imp_implementationWithBlock(^id(id self) {
+        // 1) try to read from cache
+        return objc_getAssociatedObject(self, getter);
+    });
+    
+    IMP setterImplementation = imp_implementationWithBlock(^(id self, id object) {
+        objc_setAssociatedObject(self, getter, object, associationPolicy);
+    });
+    
+    BOOL success = class_addMethod(class, getter, getterImplementation, "@@:");
+    NSCAssert(success, @"cannot add method");
+    success = class_addMethod(class, setter, setterImplementation, "v@:@");
+    NSCAssert(success, @"cannot add method");
+}
