@@ -32,7 +32,6 @@ void class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector)
 
 void class_swizzlesMethodsWithPrefix(Class class, NSString *prefix)
 {
-    
     CTMethodEnumertor enumeratorBlock = ^(Class class, Method method) {
         SEL methodSelector = method_getName(method);
         NSString *selectorString = NSStringFromSelector(methodSelector);
@@ -171,10 +170,8 @@ void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, 
         }
     });
     
-    BOOL success = class_addMethod(class, getter, getterImplementation, "@@:");
-    NSCAssert(success, @"cannot add method");
-    success = class_addMethod(class, setter, setterImplementation, "v@:@");
-    NSCAssert(success, @"cannot add method");
+    class_addMethod(class, getter, getterImplementation, "@@:");
+    class_addMethod(class, setter, setterImplementation, "v@:@");
 }
 
 void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy)
@@ -194,8 +191,6 @@ void class_implementProperty(Class class, NSString *propertyName, objc_Associati
         objc_setAssociatedObject(self, getter, object, associationPolicy);
     });
     
-    BOOL success = class_addMethod(class, getter, getterImplementation, "@@:");
-    NSCAssert(success, @"cannot add method");
-    success = class_addMethod(class, setter, setterImplementation, "v@:@");
-    NSCAssert(success, @"cannot add method");
+    class_addMethod(class, getter, getterImplementation, "@@:");
+    class_addMethod(class, setter, setterImplementation, "v@:@");
 }
