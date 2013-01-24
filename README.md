@@ -1,56 +1,15 @@
 CTObjectiveCRuntimeAdditions
 ============================
-Some Objective-C runtime additions.
 
-Swizzeling methods with blocks
-============================
-If you wanted to swizzle a method before, you would have to declare a category on a class (usually resulting in two extra files).
+CTObjectiveCRuntimeAdditions introduces the following new runtime additions:
 
-CTObjectiveCRuntimeAdditions introduces a new method `void class_swizzleSelectorWithBlock(Class class, SEL originalSelector, SEL unusedSelector, id block);` which takes the class, the selector you want to swizzle, an unused selector in which the previous implementation will be stored and a block that will be called instead of the original implementation.
-
-The block must come with a defined argument list as follows:
-
-* return type of previous implemention must match the return type of the block.
-* first argument must be an object which will be self
-* second argument must be an implementation pointer, which will be passed to the block to be able to call the previous implementation
-* further arguments must be the as of the original implementation after its `SEL _cmd` argument
-
-Example:
-
-If we take the following class as an example
-``` objc
-@interface CTTestSwizzleClass : NSObject {
-
-- (NSString *)helloWorldStringFromString:(NSString *)string;
-
-@end
-
-@implementation CTTestSwizzleClass
-
-- (NSString *)helloWorldStringFromString:(NSString *)string
-{
-    return [@"Hello World" stringByAppendingFormat:@" %@", string];
-}
-
-@end
-```
-
-one could swizzle the selector `@selector(helloWorldStringFromString:)` as follows:
-
-``` objc
-class_swizzleSelectorWithBlock([CTTestSwizzleClass class], @selector(helloWorldStringFromString:), @selector(__hookedHelloWorldStringFromString:), ^NSString *(CTTestSwizzleClass *blockSelf, IMP originalImplementation, NSString *string) {
-    return [originalImplementation(blockSelf, @selector(__hookedHelloWorldStringFromString:), string) stringByAppendingFormat:@" Hooked"];
-});
-```
-
-Now the following code
-
-``` objc
-CTTestSwizzleClass *testObject = [[CTTestSwizzleClass alloc] init];
-NSLog(@"%@", [testObject helloWorldStringFromString:@"Oli"]);
-```
-
-would produce the output `Hello World Oli Hooked` instead of just `Hello World Oli`.
+* `void class_swizzleSelector(Class class, SEL originalSelector, SEL newSelector);`
+* `void class_swizzlesMethodsWithPrefix(Class class, NSString *prefix);`
+* `void class_enumerateMethodList(Class class, CTMethodEnumertor enumerator);`
+* `Class class_subclassPassingTest(Class class, CTClassTest test);`
+* `IMP class_replaceMethodWithBlock(Class class, SEL originalSelector, id block);`
+* `void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, BOOL automaticSynchronizeUserDefaults);`
+* `void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy);`
 
 
 Getting runtime information about blocks

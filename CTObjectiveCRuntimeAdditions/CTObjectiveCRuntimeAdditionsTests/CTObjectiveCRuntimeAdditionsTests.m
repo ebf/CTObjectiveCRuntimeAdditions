@@ -47,28 +47,22 @@
 
 - (void)testBlockSwizzling
 {
+    Class class = [CTTestSwizzleClass class];
     CTTestSwizzleClass *testObject = [[CTTestSwizzleClass alloc] init];
     NSString *originalString = [testObject helloWorldStringFromString:@"Oli"];
     
     STAssertEqualObjects(originalString, @"Hello World Oli", @"Original helloWorldString wrong");
     
-    STAssertThrows(class_swizzleSelectorWithBlock([CTTestSwizzleClass class], @selector(helloWorldStringFromString:), @selector(helloWorldStringFromString2:), ^NSString *(NSString *object) {
-        return nil;
-    }), @"should not swizzle block with wrong signature");
-    
-    
-    class_swizzleSelectorWithBlock([CTTestSwizzleClass class], @selector(helloWorldStringFromString:), @selector(helloWorldStringFromString2:), ^NSString *(CTTestSwizzleClass *blockSelf, IMP originalImplementation, NSString *string) {
-        
-        STAssertEqualObjects(blockSelf.class, [CTTestSwizzleClass class], @"blockSelf is wrong");
-        return [originalImplementation(blockSelf, @selector(helloWorldStringFromString2:), string) stringByAppendingFormat:@" Hooked"];
+    __block IMP implementation1 = class_replaceMethodWithBlock(class, @selector(helloWorldStringFromString:), ^NSString *(CTTestSwizzleClass *blockSelf, NSString *string) {
+        STAssertEqualObjects(blockSelf, testObject, @"blockSelf is wrong");
+        return [implementation1(blockSelf, @selector(helloWorldStringFromString:), string) stringByAppendingFormat:@" Hooked"];
     });
     
     STAssertEqualObjects([testObject helloWorldStringFromString:@"Oli"], @"Hello World Oli Hooked", @"did not swizzle with block");
     
-    class_swizzleSelectorWithBlock([CTTestSwizzleClass class], @selector(helloWorldStringFromString:), @selector(helloWorldStringFromString3:), ^NSString *(CTTestSwizzleClass *blockSelf, IMP originalImplementation, NSString *string) {
-        
-        STAssertTrue([blockSelf isKindOfClass:[CTTestSwizzleClass class]], @"blockSelf is wrong");
-        return [originalImplementation(blockSelf, @selector(helloWorldStringFromString3:), string) stringByAppendingFormat:@" Hooked2"];
+    __block IMP implementation2 = class_replaceMethodWithBlock(class, @selector(helloWorldStringFromString:), ^NSString *(CTTestSwizzleClass *blockSelf, NSString *string) {
+        STAssertEqualObjects(blockSelf, testObject, @"blockSelf is wrong");
+        return [implementation2(blockSelf, @selector(helloWorldStringFromString:), string) stringByAppendingFormat:@" Hooked2"];
     });
     
     STAssertEqualObjects([testObject helloWorldStringFromString:@"Oli"], @"Hello World Oli Hooked Hooked2", @"did not swizzle with block");
@@ -77,10 +71,12 @@
     // test structs
     STAssertEquals(CGPointMake(2.0f, 2.0f), [testObject pointByAddingPoint:CGPointMake(1.0f, 1.0f)], @"initial point wrong");
     
-    class_swizzleSelectorWithBlock([CTTestSwizzleClass class], @selector(pointByAddingPoint:), @selector(pointByAddingPoint1:), ^CGPoint(CTTestSwizzleClass *blockSelf, CGPoint(*originalImplementation)(id, SEL, CGPoint), CGPoint point) {
-        STAssertTrue([blockSelf isKindOfClass:[CTTestSwizzleClass class]], @"blockSelf is wrong");
+    typedef CGPoint(*pointImplementation)(id self, SEL _cmd, CGPoint point);
+    
+    __block pointImplementation implementation3 = (pointImplementation)class_replaceMethodWithBlock(class, @selector(pointByAddingPoint:), ^CGPoint(CTTestSwizzleClass *blockSelf, CGPoint point) {
+        STAssertEqualObjects(blockSelf, testObject, @"blockSelf is wrong");
         
-        CGPoint originalPoint = originalImplementation(blockSelf, @selector(pointByAddingPoint1:), point);
+        CGPoint originalPoint = implementation3(blockSelf, @selector(pointByAddingPoint:), point);
         return CGPointMake(originalPoint.x + 1.0f, originalPoint.y + 1.0f);
     });
     

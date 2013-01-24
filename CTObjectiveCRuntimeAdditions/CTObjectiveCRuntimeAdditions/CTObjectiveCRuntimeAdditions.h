@@ -30,10 +30,10 @@ void class_enumerateMethodList(Class class, CTMethodEnumertor enumerator);
 Class class_subclassPassingTest(Class class, CTClassTest test);
 
 /**
- @abstract Swizzles originalSelector with block and places original implementation in unusedSelector.
- @warning if originalSelector's argument list is (id self, SEL _cmd, ...), then block's argument list must be (id self, IMP originalImplemenation, ...)
+ @abstract Replaces implementation of method of originalSelector with block.
+           if originalSelector's argument list is (id self, SEL _cmd, ...), then block's argument list must be (id self, ...)
  */
-void class_swizzleSelectorWithBlock(Class class, SEL originalSelector, SEL unusedSelector, id block);
+IMP class_replaceMethodWithBlock(Class class, SEL originalSelector, id block);
 
 /**
  Implements class property at runtime which is backed by NSUserDefaults. This will use -[NSUserDefaults setObject:forKey:].
