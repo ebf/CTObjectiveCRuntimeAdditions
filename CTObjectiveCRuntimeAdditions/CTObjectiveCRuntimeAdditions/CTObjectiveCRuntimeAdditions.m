@@ -159,7 +159,6 @@ void class_implementProperty(Class class, NSString *propertyName, objc_Associati
     SEL setter = NSSelectorFromString(setterName);
     
     IMP getterImplementation = imp_implementationWithBlock(^id(id self) {
-        // 1) try to read from cache
         return objc_getAssociatedObject(self, getter);
     });
     
