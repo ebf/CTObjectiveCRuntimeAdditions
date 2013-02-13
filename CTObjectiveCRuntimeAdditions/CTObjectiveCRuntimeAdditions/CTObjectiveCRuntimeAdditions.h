@@ -41,7 +41,17 @@ IMP class_replaceMethodWithBlock(Class class, SEL originalSelector, id block);
 void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, BOOL automaticSynchronizeUserDefaults);
 
 /**
- Implements class poperty at runtime which is backed by associated objects
+ Implements a property at runtime. The default encoding is @encode(id) and the default associationPolicy is OBJC_ASSOCIATION_RETAIN_NONATOMIC
  */
+__attribute__((overloadable))
+void class_implementProperty(Class class, NSString *propertyName);
+
+__attribute__((overloadable))
 void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy);
+
+__attribute__((overloadable))
+void class_implementProperty(Class class, NSString *propertyName, char *const encoding);
+
+__attribute__((overloadable))
+void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy, char *const encoding);
 

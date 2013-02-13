@@ -150,22 +150,93 @@ void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, 
     class_addMethod(class, setter, setterImplementation, "v@:@");
 }
 
+__attribute__((overloadable))
+void class_implementProperty(Class class, NSString *propertyName)
+{
+    class_implementProperty(class, propertyName, OBJC_ASSOCIATION_RETAIN_NONATOMIC, @encode(id));
+}
+
+__attribute__((overloadable))
 void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy)
 {
+    class_implementProperty(class, propertyName, associationPolicy, @encode(id));
+}
+
+__attribute__((overloadable))
+void class_implementProperty(Class class, NSString *propertyName, char *const encoding)
+{
+    class_implementProperty(class, propertyName, OBJC_ASSOCIATION_RETAIN_NONATOMIC, encoding);
+}
+
+__attribute__((overloadable))
+void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy, char *const encoding)
+{
+    NSCAssert(encoding != NULL, @"encoding cannot be null");
+    
     SEL getter = NSSelectorFromString(propertyName);
     NSString *firstLetter = [propertyName substringToIndex:1];
     NSString *setterName = [propertyName stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[NSString stringWithFormat:@"set%@", firstLetter.uppercaseString]];
     setterName = [setterName stringByAppendingString:@":"];
     SEL setter = NSSelectorFromString(setterName);
+        
+    if (encoding[0] == @encode(id)[0]) {
+        IMP getterImplementation = imp_implementationWithBlock(^id(id self) {
+            return objc_getAssociatedObject(self, getter);
+        });
+        
+        IMP setterImplementation = imp_implementationWithBlock(^(id self, id object) {
+            objc_setAssociatedObject(self, getter, object, associationPolicy);
+        });
+        
+        class_addMethod(class, getter, getterImplementation, "@@:");
+        class_addMethod(class, setter, setterImplementation, "v@:@");
+        
+        return;
+    }
     
-    IMP getterImplementation = imp_implementationWithBlock(^id(id self) {
-        return objc_getAssociatedObject(self, getter);
-    });
+#define CASE(type, selectorpart) if (encoding[0] == @encode(type)[0]) {\
+    IMP getterImplementation = imp_implementationWithBlock(^type(id self) {\
+        return [objc_getAssociatedObject(self, getter) selectorpart##Value];\
+    });\
+    \
+    IMP setterImplementation = imp_implementationWithBlock(^(id self, type object) {\
+        objc_setAssociatedObject(self, getter, @(object), associationPolicy);\
+    });\
+    \
+    class_addMethod(class, getter, getterImplementation, "@@:");\
+    class_addMethod(class, setter, setterImplementation, "v@:@");\
+    \
+    return;\
+}
+
+    if (encoding[0] == @encode(BOOL)[0]) {
+        IMP getterImplementation = imp_implementationWithBlock(^BOOL(id self) {
+            return [objc_getAssociatedObject(self, getter) boolValue];
+        });
+        
+        IMP setterImplementation = imp_implementationWithBlock(^(id self, BOOL object) {
+            objc_setAssociatedObject(self, getter, @(object), associationPolicy);
+        });
+        
+        class_addMethod(class, getter, getterImplementation, "@@:");
+        class_addMethod(class, setter, setterImplementation, "v@:@");
+        
+        return;
+    }
     
-    IMP setterImplementation = imp_implementationWithBlock(^(id self, id object) {
-        objc_setAssociatedObject(self, getter, object, associationPolicy);
-    });
+    CASE(char, char);
+    CASE(unsigned char, unsignedChar);
+    CASE(short, short);
+    CASE(unsigned short, unsignedShort);
+    CASE(int, int);
+    CASE(unsigned int, unsignedInt);
+    CASE(long, long);
+    CASE(unsigned long, unsignedLong);
+    CASE(long long, longLong);
+    CASE(unsigned long long, unsignedLongLong);
+    CASE(float, float);
+    CASE(double, double);
+    CASE(BOOL, bool);
     
-    class_addMethod(class, getter, getterImplementation, "@@:");
-    class_addMethod(class, setter, setterImplementation, "v@:@");
+    NSCAssert(NO, @"encoding %s in not supported for %s", encoding, __PRETTY_FUNCTION__);
 }
