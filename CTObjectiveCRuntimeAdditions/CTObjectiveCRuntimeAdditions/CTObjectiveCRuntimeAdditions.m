@@ -150,39 +150,87 @@ void class_implementPropertyInUserDefaults(Class class, NSString *propertyName, 
     class_addMethod(class, setter, setterImplementation, "v@:@");
 }
 
-__attribute__((overloadable))
 void class_implementProperty(Class class, NSString *propertyName)
 {
-    class_implementProperty(class, propertyName, OBJC_ASSOCIATION_RETAIN_NONATOMIC, @encode(id));
-}
-
-__attribute__((overloadable))
-void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy)
-{
-    class_implementProperty(class, propertyName, associationPolicy, @encode(id));
-}
-
-__attribute__((overloadable))
-void class_implementProperty(Class class, NSString *propertyName, char *const encoding)
-{
-    class_implementProperty(class, propertyName, OBJC_ASSOCIATION_RETAIN_NONATOMIC, encoding);
-}
-
-__attribute__((overloadable))
-void class_implementProperty(Class class, NSString *propertyName, objc_AssociationPolicy associationPolicy, char *const encoding)
-{
-    NSCAssert(encoding != NULL, @"encoding cannot be null");
+    NSCAssert(class != Nil, @"class is required");
+    NSCAssert(propertyName != nil, @"propertyName is required");
     
-    SEL getter = NSSelectorFromString(propertyName);
-    NSString *firstLetter = [propertyName substringToIndex:1];
-    NSString *setterName = [propertyName stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[NSString stringWithFormat:@"set%@", firstLetter.uppercaseString]];
-    setterName = [setterName stringByAppendingString:@":"];
-    SEL setter = NSSelectorFromString(setterName);
+    objc_property_t property = class_getProperty(class, propertyName.UTF8String);
+    
+    unsigned int count = 0;
+    objc_property_attribute_t *attributes = property_copyAttributeList(property, &count);
+    
+    typedef enum {
+        MemoryManagementAssign,
+        MemoryManagementCopy,
+        MemoryManagementRetain
+    } MemoryManagement;
+    
+    MemoryManagement memoryManagement = MemoryManagementAssign;
+    BOOL isNonatomic = NO;
+    
+    NSString *getterName = nil;
+    NSString *setterName = nil;
+    NSString *encoding = nil;
+    
+    for (int i = 0; i < count; i++) {
+        objc_property_attribute_t attribute = attributes[i];
         
-    if (encoding[0] == @encode(id)[0]) {
+        switch (attribute.name[0]) {
+            case 'N':
+                isNonatomic = YES;
+                break;
+            case '&':
+                memoryManagement = MemoryManagementRetain;
+                break;
+            case 'C':
+                memoryManagement = MemoryManagementCopy;
+                break;
+            case 'G':
+                getterName = [NSString stringWithFormat:@"%s", attribute.value];
+                break;
+            case 'S':
+                setterName = [NSString stringWithFormat:@"%s", attribute.value];
+                break;
+            case 'T':
+                encoding = [NSString stringWithFormat:@"%s", attribute.value];
+                break;
+            case 'W':
+                NSCAssert(NO, @"weak properties are not supported");
+                break;
+            default:
+                break;
+        }
+    }
+    
+    if (!getterName) {
+        getterName = propertyName;
+    }
+    
+    if (!setterName) {
+        NSString *firstLetter = [propertyName substringToIndex:1];
+        setterName = [propertyName stringByReplacingCharactersInRange:NSMakeRange(0, 1) withString:[NSString stringWithFormat:@"set%@", firstLetter.uppercaseString]];
+        setterName = [setterName stringByAppendingString:@":"];
+    }
+    
+    NSCAssert([encoding characterAtIndex:0] != '{', @"structs are not supported");
+    NSCAssert([encoding characterAtIndex:0] != '(', @"unions are not supported");
+    
+    SEL getter = NSSelectorFromString(getterName);
+    SEL setter = NSSelectorFromString(setterName);
+    
+    if (encoding.UTF8String[0] == @encode(id)[0]) {
         IMP getterImplementation = imp_implementationWithBlock(^id(id self) {
             return objc_getAssociatedObject(self, getter);
         });
+        
+        objc_AssociationPolicy associationPolicy = 0;
+        
+        if (memoryManagement == MemoryManagementCopy) {
+            associationPolicy = isNonatomic ? OBJC_ASSOCIATION_COPY_NONATOMIC : OBJC_ASSOCIATION_COPY;
+        } else {
+            associationPolicy = isNonatomic ? OBJC_ASSOCIATION_RETAIN_NONATOMIC : OBJC_ASSOCIATION_RETAIN;
+        }
         
         IMP setterImplementation = imp_implementationWithBlock(^(id self, id object) {
             objc_setAssociatedObject(self, getter, object, associationPolicy);
@@ -194,35 +242,22 @@ void class_implementProperty(Class class, NSString *propertyName, objc_Associati
         return;
     }
     
-#define CASE(type, selectorpart) if (encoding[0] == @encode(type)[0]) {\
-    IMP getterImplementation = imp_implementationWithBlock(^type(id self) {\
-        return [objc_getAssociatedObject(self, getter) selectorpart##Value];\
-    });\
-    \
-    IMP setterImplementation = imp_implementationWithBlock(^(id self, type object) {\
-        objc_setAssociatedObject(self, getter, @(object), associationPolicy);\
-    });\
-    \
-    class_addMethod(class, getter, getterImplementation, "@@:");\
-    class_addMethod(class, setter, setterImplementation, "v@:@");\
-    \
-    return;\
+    objc_AssociationPolicy associationPolicy = isNonatomic ? OBJC_ASSOCIATION_RETAIN_NONATOMIC : OBJC_ASSOCIATION_RETAIN;
+    
+#define CASE(type, selectorpart) if (encoding.UTF8String[0] == @encode(type)[0]) {\
+IMP getterImplementation = imp_implementationWithBlock(^type(id self) {\
+return [objc_getAssociatedObject(self, getter) selectorpart##Value];\
+});\
+\
+IMP setterImplementation = imp_implementationWithBlock(^(id self, type object) {\
+objc_setAssociatedObject(self, getter, @(object), associationPolicy);\
+});\
+\
+class_addMethod(class, getter, getterImplementation, "@@:");\
+class_addMethod(class, setter, setterImplementation, "v@:@");\
+\
+return;\
 }
-
-    if (encoding[0] == @encode(BOOL)[0]) {
-        IMP getterImplementation = imp_implementationWithBlock(^BOOL(id self) {
-            return [objc_getAssociatedObject(self, getter) boolValue];
-        });
-        
-        IMP setterImplementation = imp_implementationWithBlock(^(id self, BOOL object) {
-            objc_setAssociatedObject(self, getter, @(object), associationPolicy);
-        });
-        
-        class_addMethod(class, getter, getterImplementation, "@@:");
-        class_addMethod(class, setter, setterImplementation, "v@:@");
-        
-        return;
-    }
     
     CASE(char, char);
     CASE(unsigned char, unsignedChar);
@@ -238,5 +273,7 @@ void class_implementProperty(Class class, NSString *propertyName, objc_Associati
     CASE(double, double);
     CASE(BOOL, bool);
     
-    NSCAssert(NO, @"encoding %s in not supported for %s", encoding, __PRETTY_FUNCTION__);
+#undef CASE
+    
+    NSCAssert(NO, @"encoding %@ in not supported", encoding);
 }
