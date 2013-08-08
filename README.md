@@ -65,4 +65,4 @@ License
 ============================
 MIT
 
-Thanks goes to the [Block Implementation Specification](http://clang.llvm.org/docs/Block-ABI-Apple.txt) and the [A2DynamicDelegate](https://github.com/pandamonia/A2DynamicDelegate) project for some good libffi samples and convertion from encodings to libffi types.
+Thanks goes to the [Block Implementation Specification](http://clang.llvm.org/docs/Block-ABI-Apple.html) and the [A2DynamicDelegate](https://github.com/pandamonia/A2DynamicDelegate) project for some good libffi samples and convertion from encodings to libffi types.
