@@ -45,6 +45,14 @@
     }
 }
 
+- (void)testBlockDescriptionCanHandleSpecifiedClasses{
+    NSString *(^testBlock)(NSString *) = ^NSString *(NSString *str) {
+        return @"Test";
+    };
+    
+    STAssertNoThrow([[CTBlockDescription alloc] initWithBlock:testBlock], @"CTBlockDescription fails when class names are specified.");
+}
+
 - (void)testBlockSwizzling
 {
     Class class = [CTTestSwizzleClass class];
